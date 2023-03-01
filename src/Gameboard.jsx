@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
+import Cell from './Cell'
 import './game.css';
 
 const Gameboard = () => {
-
   const [gameboard, setGameboard] = useState([])
   const rows = 10
   const cols = 10
@@ -16,7 +16,6 @@ const Gameboard = () => {
     while (bombCount < bombs) {
       let randomPos = Math.floor(Math.random() * row * col)
       let bombPos;
-
       if (randomPos < 10) {
         bombPos = [0, randomPos]
       } else {
@@ -28,14 +27,12 @@ const Gameboard = () => {
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
-
         let isBomb;
-        bombPositions.map((pos) => {
+        bombPositions.forEach((pos) => {
           if (JSON.stringify(pos) === JSON.stringify([row, col])) {
             return isBomb = true
           };
         })
-
         game.push({
           value: isBomb ? 1 : 0,
           hidden: true,
@@ -46,7 +43,6 @@ const Gameboard = () => {
     };
 
     setGameboard(game)
-    console.log(bombPositions)
   };
 
   useEffect(
@@ -55,27 +51,13 @@ const Gameboard = () => {
     }, []
   );
 
-  const handleClick = (cell) => {
-    console.log(cell)
-  }
-
   return (
     <div className='gameboard'>
-      {gameboard.map((cell, i) => {
-
-        const isBomb = cell.value === 1
-
-        console.log(isBomb)
-
-        return (
-          <div
-            key={`${cell.position[0]} - ${i}`}
-            onClick={() => handleClick(cell)}
-            className={`cell ${isBomb ? `bomb` : ``}`}
-          >
-          </div>
-        )
-      })}
+      {gameboard.map((cell) => (
+        <Cell
+          cell={cell}
+        />
+      ))}
     </div >
   )
 }
