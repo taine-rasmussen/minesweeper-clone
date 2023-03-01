@@ -28,13 +28,19 @@ const Gameboard = () => {
     }, []
   );
 
-  console.log(gameboard)
+  const handleClick = (cell) => {
+    console.log(cell)
+  }
 
   return (
     <div className='gameboard'>
       {gameboard.map((cell, i) => {
         return (
-          <div className='cell' key={`${cell.position[0]} - ${i}`}>
+          <div
+            key={`${cell.position[0]} - ${i}`}
+            onClick={() => handleClick(cell)}
+            className='cell'
+          >
           </div>
         )
       })}
