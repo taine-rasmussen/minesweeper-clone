@@ -10,6 +10,8 @@ const Gameboard = () => {
 
   const createGameboard = (row, col, bombs) => {
     let game = []
+    let bombCount = 0;
+
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col < cols; col++) {
         game.push({
@@ -20,6 +22,21 @@ const Gameboard = () => {
         })
       }
     };
+
+    while (bombCount < bombs) {
+      let randomPos = Math.floor(Math.random() * row * col)
+      let bombPos;
+
+      if (randomPos < 10) {
+        bombPos = [0, randomPos]
+      } else {
+        bombPos = randomPos.toString().split("").map(Number)
+      }
+      console.log(bombPos)
+      bombCount++
+    }
+
+
     setGameboard(game)
   };
 
