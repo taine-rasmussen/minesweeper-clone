@@ -13,15 +13,20 @@ const Cell = (props) => {
 
   const isBomb = value === 1
 
-  const handleClick = () => {
+  window.oncontextmenu = function () {
+    return false;
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log(cell, e)
     if (flagged) return;
-    console.log(cell)
   }
 
   return (
     <div
       key={position[0]}
-      onClick={handleClick}
+      onMouseDown={(e) => handleClick(e)}
       className={`cell ${isBomb ? `bomb` : ``}`}
     >
     </div>
