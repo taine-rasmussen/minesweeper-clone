@@ -28,7 +28,6 @@ const Gameboard = () => {
       {gameboard.map((cell, i) => {
         return (
           <div className='cell' key={cell}>
-            {cell}
           </div>
         )
       })}

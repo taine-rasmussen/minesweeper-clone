@@ -1,5 +1,5 @@
 import Gameboard from './Gameboard'
-import './game.css';
+import './index.css'
 
 function App() {
 
