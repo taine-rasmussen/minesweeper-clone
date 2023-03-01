@@ -37,7 +37,8 @@ const Gameboard = () => {
           value: isBomb ? 1 : 0,
           hidden: true,
           position: [row, col],
-          neighbours: []
+          neighbours: [],
+          flagged: false
         })
       }
     };

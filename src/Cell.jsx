@@ -5,7 +5,8 @@ const Cell = (props) => {
   const {
     cell: {
       value,
-      position
+      position,
+      flagged
     },
     cell
   } = props;
@@ -13,9 +14,9 @@ const Cell = (props) => {
   const isBomb = value === 1
 
   const handleClick = () => {
+    if (flagged) return;
     console.log(cell)
   }
-
 
   return (
     <div
