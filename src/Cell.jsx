@@ -18,7 +18,6 @@ const Cell = (props) => {
   }
 
   const handleClick = (e) => {
-    e.preventDefault();
     console.log(cell, e)
     if (flagged) return;
   }
