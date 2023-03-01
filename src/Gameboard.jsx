@@ -6,22 +6,12 @@ const Gameboard = () => {
   const [gameboard, setGameboard] = useState([])
   const rows = 10
   const cols = 10
-  const bombs = 20
+  const bombs = 30
 
   const createGameboard = (row, col, bombs) => {
     let game = []
     let bombCount = 0;
-
-    for (let row = 0; row < rows; row++) {
-      for (let col = 0; col < cols; col++) {
-        game.push({
-          value: 0,
-          hidden: true,
-          position: [row, col],
-          neighbours: []
-        })
-      }
-    };
+    let bombPositions = []
 
     while (bombCount < bombs) {
       let randomPos = Math.floor(Math.random() * row * col)
@@ -32,12 +22,31 @@ const Gameboard = () => {
       } else {
         bombPos = randomPos.toString().split("").map(Number)
       }
-      console.log(bombPos)
+      bombPositions.push(bombPos)
       bombCount++
     }
 
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
+
+        let isBomb;
+        bombPositions.map((pos) => {
+          if (JSON.stringify(pos) === JSON.stringify([row, col])) {
+            return isBomb = true
+          };
+        })
+
+        game.push({
+          value: isBomb ? 1 : 0,
+          hidden: true,
+          position: [row, col],
+          neighbours: []
+        })
+      }
+    };
 
     setGameboard(game)
+    console.log(bombPositions)
   };
 
   useEffect(
@@ -53,16 +62,21 @@ const Gameboard = () => {
   return (
     <div className='gameboard'>
       {gameboard.map((cell, i) => {
+
+        const isBomb = cell.value === 1
+
+        console.log(isBomb)
+
         return (
           <div
             key={`${cell.position[0]} - ${i}`}
             onClick={() => handleClick(cell)}
-            className='cell'
+            className={`cell ${isBomb ? `bomb` : ``}`}
           >
           </div>
         )
       })}
-    </div>
+    </div >
   )
 }
 
