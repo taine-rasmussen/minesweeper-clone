@@ -11,7 +11,12 @@ const Gameboard = () => {
     let game = []
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < cols; j++) {
-        game.push([i, j])
+        game.push({
+          value: 0,
+          hidden: true,
+          position: [i, j],
+          neighbours: []
+        })
       }
     };
     setGameboard(game)
@@ -23,11 +28,13 @@ const Gameboard = () => {
     }, []
   );
 
+  console.log(gameboard)
+
   return (
     <div className='gameboard'>
       {gameboard.map((cell, i) => {
         return (
-          <div className='cell' key={cell}>
+          <div className='cell' key={`${cell.position[0]} - ${i}`}>
           </div>
         )
       })}
