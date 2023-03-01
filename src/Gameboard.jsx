@@ -6,15 +6,16 @@ const Gameboard = () => {
   const [gameboard, setGameboard] = useState([])
   const rows = 10
   const cols = 10
+  const bombs = 20
 
-  const createGameboard = () => {
+  const createGameboard = (row, col, bombs) => {
     let game = []
-    for (let i = 0; i < rows; i++) {
-      for (let j = 0; j < cols; j++) {
+    for (let row = 0; row < rows; row++) {
+      for (let col = 0; col < cols; col++) {
         game.push({
           value: 0,
           hidden: true,
-          position: [i, j],
+          position: [row, col],
           neighbours: []
         })
       }
@@ -24,7 +25,7 @@ const Gameboard = () => {
 
   useEffect(
     () => {
-      createGameboard()
+      createGameboard(rows, cols, bombs)
     }, []
   );
 
