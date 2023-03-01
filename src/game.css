@@ -1,11 +1,11 @@
 .gameboard {
-  border: 2px solid #000;
   display: flex;
-  width: 80%;
+  max-width: 550px;
+  flex-wrap: wrap;
 }
 
 .cell {
   border: 2px solid #000;
-  height: 25px;
-  width: 25px;
+  height: 50px;
+  width: 50px;
 }
